@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f7f1">
+    <meta name="description" content="grassgram — зелений простір для розмов, ідей і спільного зростання.">
+    <title>grassgram — простір для розмов</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="grassgram — на головну">
+          <span class="brand-copy">
+            <strong>grassgram</strong>
+            <span>ідеї зростають разом</span>
+          </span>
+        </a>
+        <form class="search-form" id="search-form" role="search">
+          <span class="search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="10.8" cy="10.8" r="6.3"></circle>
+              <path d="m15.5 15.5 4 4"></path>
+            </svg>
+          </span>
+          <input id="search-input" type="search" placeholder="Знайти повідомлення..." autocomplete="off" aria-label="Знайти повідомлення">
+          <kbd>Enter</kbd>
+        </form>
+        <button class="profile-button" id="switch-user" type="button" aria-label="Змінити користувача">
+          <span class="avatar avatar-small" id="profile-avatar">?</span>
+          <span class="profile-name" id="profile-name">Гість</span>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </button>
+      </header>
+
+      <main class="workspace">
+        <nav class="app-rail" aria-label="Основна навігація">
+          <a class="rail-logo" href="/" aria-label="grassgram — на головну">
+            <svg viewBox="0 0 32 32" focusable="false">
+              <path d="M25.5 5.5C14 5.8 7.3 10.1 7.3 18.1c0 4.7 3.1 7.8 7.4 7.8 8.3 0 10.9-10.2 10.8-20.4Z"></path>
+              <path d="M5.2 27.1c4.3-7.3 9.2-11.9 16.4-16.2"></path>
+            </svg>
+          </a>
+          <div class="rail-divider"></div>
+          <button class="rail-button is-current" id="show-conversations" type="button" aria-label="Показати список розмов" aria-current="page" title="Розмови">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4.5 5.5h15v11h-8l-5 3v-3h-2z"></path>
+              <path d="M8 9.5h8M8 12.5h5"></path>
+            </svg>
+          </button>
+          <button class="rail-button rail-compose" id="new-chat" type="button" aria-label="Створити розмову" title="Створити розмову">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+          </button>
+          <span class="rail-spacer"></span>
+          <span class="rail-leaf" aria-hidden="true">g.</span>
+        </nav>
+
+        <aside class="sidebar" aria-label="Список розмов">
+          <div class="sidebar-heading">
+            <div>
+              <p class="eyebrow">ВАШ ПРОСТІР</p>
+              <h1>Розмови<span class="heading-period">.</span></h1>
+            </div>
+          </div>
+          <div class="conversation-section">
+            <div class="section-label">
+              <span>УСІ РОЗМОВИ</span>
+              <span class="count-pill" id="conversation-count">0</span>
+            </div>
+            <nav class="conversation-list" id="conversation-list" aria-label="Ваші розмови"></nav>
+            <div class="sidebar-empty" id="sidebar-empty">
+              <span class="empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" focusable="false">
+                  <path d="M25.5 5.5C14 5.8 7.3 10.1 7.3 18.1c0 4.7 3.1 7.8 7.4 7.8 8.3 0 10.9-10.2 10.8-20.4Z"></path>
+                  <path d="M5.2 27.1c4.3-7.3 9.2-11.9 16.4-16.2"></path>
+                </svg>
+              </span>
+              <p>Тут ще тихо</p>
+              <span>Почніть розмову — і нехай ідеї ростуть.</span>
+            </div>
+          </div>
+          <div class="sidebar-footer">
+            <span class="online-dot"></span>
+            <span>Ваш простір зростає з вами</span>
+          </div>
+        </aside>
+
+        <section class="chat-panel" id="chat-panel" aria-live="polite">
+          <div class="welcome-state" id="welcome-state">
+            <div class="welcome-art" aria-hidden="true">
+              <span class="art-orbit orbit-one"></span>
+              <span class="art-orbit orbit-two"></span>
+              <span class="art-spark spark-one" aria-hidden="true"></span>
+              <span class="art-spark spark-two" aria-hidden="true"></span>
+              <span class="art-bubble bubble-one">привіт, світе</span>
+              <span class="art-bubble bubble-two">на зв’язку</span>
+              <span class="art-center">
+                <svg viewBox="0 0 64 64" focusable="false">
+                  <path d="M50 10C27 11 14 19 14 35c0 9 6 15 15 15 16 0 22-20 21-40Z"></path>
+                  <path d="M9 55c9-15 18-24 33-33"></path>
+                </svg>
+              </span>
+            </div>
+            <p class="eyebrow">РАДІ ВАС БАЧИТИ У GRASSGRAM</p>
+            <h2>Дайте своїм ідеям<br>простір для зростання.</h2>
+            <p class="welcome-copy">Створіть розмову для навчання, спільних планів або щоденних думок.</p>
+            <button class="primary-button welcome-create" id="welcome-create" type="button">
+              <span>Почати розмову</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5"></path></svg>
+            </button>
+          </div>
+          <div class="conversation-view" id="conversation-view" hidden>
+            <div class="chat-header" id="chat-header"></div>
+            <div class="messages-area" id="messages-area" aria-label="Повідомлення розмови"></div>
+            <form class="composer" id="message-form">
+              <label class="visually-hidden" for="message-input">Ваше повідомлення</label>
+              <textarea id="message-input" rows="1" maxlength="4000" placeholder="Напишіть повідомлення..." required></textarea>
+              <div class="composer-footer">
+                <span class="composer-hint">Enter — надіслати · Shift + Enter — новий рядок</span>
+                <button class="send-button" type="submit" aria-label="Надіслати повідомлення">
+                  <span>Надіслати</span>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15V5M5.5 9.5 10 5l4.5 4.5"></path></svg>
+                </button>
+              </div>
+            </form>
+          </div>
+          <section class="search-view" id="search-view" hidden>
+            <div class="search-view-heading">
+              <div>
+                <p class="eyebrow">ПОШУК У GRASSGRAM</p>
+                <h2 id="search-title">Результати</h2>
+              </div>
+              <button class="text-button" id="clear-search" type="button">До розмов <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="search-results" id="search-results"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="app-dialog" id="account-dialog" aria-labelledby="account-title">
+      <div class="dialog-top">
+        <span class="dialog-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" focusable="false">
+            <path d="M25.5 5.5C14 5.8 7.3 10.1 7.3 18.1c0 4.7 3.1 7.8 7.4 7.8 8.3 0 10.9-10.2 10.8-20.4Z"></path>
+            <path d="M5.2 27.1c4.3-7.3 9.2-11.9 16.4-16.2"></path>
+          </svg>
+        </span>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Закрити">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"></path></svg>
+        </button>
+      </div>
+      <p class="eyebrow">ВАШ ПРОФІЛЬ GRASSGRAM</p>
+      <h2 id="account-title">Хто приєднається до розмови?</h2>
+      <p class="dialog-copy">Оберіть свій профіль або створіть новий, щоб долучитися до спільноти.</p>
+      <form id="account-select-form">
+        <label class="field-label" id="account-picker-label" for="account-picker-trigger">Оберіть профіль</label>
+        <div class="account-picker" id="account-picker">
+          <input id="account-select" type="hidden">
+          <button class="account-picker-trigger" id="account-picker-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="account-picker-options">
+            <span id="account-picker-value">Оберіть профіль</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7.5 5 5 5-5"></path></svg>
+          </button>
+          <div class="account-picker-options" id="account-picker-options" role="listbox" aria-labelledby="account-picker-label" hidden></div>
+        </div>
+        <button class="primary-button dialog-submit" type="submit" id="account-select-submit">Продовжити <span aria-hidden="true">↗</span></button>
+      </form>
+      <div class="form-divider"><span>АБО СТВОРІТЬ НОВИЙ</span></div>
+      <form class="create-account-form" id="account-create-form">
+        <label class="field-label" for="username-input">Ім’я користувача</label>
+        <div class="input-button-row">
+          <input id="username-input" name="username" maxlength="30" placeholder="наприклад, olena" autocomplete="username" required>
+          <button class="secondary-button" type="submit">Створити</button>
+        </div>
+        <p class="field-hint">Латинські літери, цифри, крапки та дефіси.</p>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog" id="conversation-dialog" aria-labelledby="conversation-title">
+      <div class="dialog-top">
+        <span class="dialog-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" focusable="false">
+            <path d="M25.5 5.5C14 5.8 7.3 10.1 7.3 18.1c0 4.7 3.1 7.8 7.4 7.8 8.3 0 10.9-10.2 10.8-20.4Z"></path>
+            <path d="M5.2 27.1c4.3-7.3 9.2-11.9 16.4-16.2"></path>
+          </svg>
+        </span>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Закрити">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"></path></svg>
+        </button>
+      </div>
+      <p class="eyebrow">НОВА РОЗМОВА</p>
+      <h2 id="conversation-title">Створити розмову</h2>
+      <p class="dialog-copy">Дайте спільним ідеям місце для зростання — запросіть учасників.</p>
+      <form id="conversation-form">
+        <label class="field-label" for="conversation-name">Назва розмови</label>
+        <input id="conversation-name" maxlength="80" placeholder="наприклад, Підготовка до іспиту" required>
+        <div class="participants-heading">
+          <span class="field-label">Запросити учасників</span>
+          <span class="field-hint">Оберіть одного або кількох</span>
+        </div>
+        <div class="participant-list" id="participant-list"></div>
+        <button class="primary-button dialog-submit" type="submit">Створити розмову <span aria-hidden="true">↗</span></button>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
